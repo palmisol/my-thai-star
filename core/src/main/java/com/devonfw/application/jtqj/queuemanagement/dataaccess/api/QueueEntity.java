@@ -7,122 +7,127 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.devonfw.application.jtqj.general.dataaccess.api.ApplicationPersistenceEntity;
+import com.devonfw.application.jtqj.queuemanagement.common.api.Queue;
+
 @Entity
 @Table(name = "DailyQueue")
-public class QueueEntity {
+public class QueueEntity extends ApplicationPersistenceEntity implements Queue {
 
-  private String name;
+	private String name;
 
-  private String logo;
+	private String logo;
 
-  private String currentNumber;
+	private String currentNumber;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp attentionTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Timestamp attentionTime;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp minAttentionTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Timestamp minAttentionTime;
 
-  private Boolean active;
+	private Boolean active;
 
-  private int customers;
+	private int customers;
 
-  /**
-   * @return the name
-   */
-  public String getName() {
-    return name;
-  }
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * @param name the name to set
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-  /**
-   * @return the logo
-   */
-  public String getLogo() {
-    return logo;
-  }
+	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  /**
-   * @param logo the logo to set
-   */
-  public void setLogo(String logo) {
-    this.logo = logo;
-  }
+	/**
+	 * @return the logo
+	 */
+	public String getLogo() {
+		return logo;
+	}
 
-  /**
-   * @return the currentNumber
-   */
-  public String getCurrentNumber() {
-    return currentNumber;
-  }
+	/**
+	 * @param logo the logo to set
+	 */
+	public void setLogo(String logo) {
+		this.logo = logo;
+	}
 
-  /**
-   * @param currentNumber the currentNumber to set
-   */
-  public void setCurrentNumber(String currentNumber) {
-    this.currentNumber = currentNumber;
-  }
+	/**
+	 * @return the currentNumber
+	 */
+	public String getCurrentNumber() {
+		return currentNumber;
+	}
 
-  /**
-   * @return the attentionTime
-   */
-  public Timestamp getAttentionTime() {
-    return attentionTime;
-  }
+	/**
+	 * @param currentNumber the currentNumber to set
+	 */
+	public void setCurrentNumber(String currentNumber) {
+		this.currentNumber = currentNumber;
+	}
 
-  /**
-   * @param attentionTime the attentionTime to set
-   */
-  public void setAttentionTime(Timestamp attentionTime) {
-    this.attentionTime = attentionTime;
-  }
+	/**
+	 * @return the attentionTime
+	 */
+	public Timestamp getAttentionTime() {
+		return attentionTime;
+	}
 
-  /**
-   * @return the minAttentionTime
-   */
-  public Timestamp getMinAttentionTime() {
-    return minAttentionTime;
-  }
+	/**
+	 * @param attentionTime the attentionTime to set
+	 */
+	public void setAttentionTime(Timestamp attentionTime) {
+		this.attentionTime = attentionTime;
+	}
 
-  /**
-   * @param minAttentionTime the minAttentionTime to set
-   */
-  public void setMinAttentionTime(Timestamp minAttentionTime) {
-    this.minAttentionTime = minAttentionTime;
-  }
+	/**
+	 * @return the minAttentionTime
+	 */
+	public Timestamp getMinAttentionTime() {
+		return minAttentionTime;
+	}
 
-  /**
-   * @return the active
-   */
-  public Boolean getActive() {
-    return active;
-  }
+	/**
+	 * @param minAttentionTime the minAttentionTime to set
+	 */
+	public void setMinAttentionTime(Timestamp minAttentionTime) {
+		this.minAttentionTime = minAttentionTime;
+	}
 
-  /**
-   * @param active the active to set
-   */
-  public void setActive(Boolean active) {
-    this.active = active;
-  }
+	/**
+	 * @return the active
+	 */
+	public Boolean getActive() {
+		return active;
+	}
 
-  /**
-   * @return the customers
-   */
-  public int getCustomers() {
-    return customers;
-  }
+	/**
+	 * @param active the active to set
+	 */
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
 
-  /**
-   * @param customers the customers to set
-   */
-  public void setCustomers(int customers) {
-    this.customers = customers;
-  }
+	/**
+	 * @return the customers
+	 */
+	public int getCustomers() {
+		return customers;
+	}
+
+	/**
+	 * @param customers the customers to set
+	 */
+	public void setCustomers(int customers) {
+		this.customers = customers;
+	}
 
 }

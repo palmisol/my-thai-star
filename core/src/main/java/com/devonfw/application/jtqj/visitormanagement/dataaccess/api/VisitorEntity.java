@@ -3,11 +3,28 @@ package com.devonfw.application.jtqj.visitormanagement.dataaccess.api;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.devonfw.application.jtqj.general.dataaccess.api.ApplicationPersistenceEntity;
+import com.devonfw.application.jtqj.visitormanagement.common.api.Visitor;
+
 @Entity
 @Table(name = "Visitor")
-public class VisitorEntity {
-	  
+public class VisitorEntity extends ApplicationPersistenceEntity implements Visitor {
+
 	private String username;
+
+	private String name;
+
+	private String phoneNumber;
+
+	private String password;
+
+	private Boolean acceptedCommercial;
+
+	private Boolean acceptedTerms;
+
+	private Boolean userType;
+
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @return the username
@@ -107,15 +124,4 @@ public class VisitorEntity {
 		this.userType = userType;
 	}
 
-	private String name;
-
-	private String phoneNumber;
-
-	private String password;
-
-	private Boolean acceptedCommercial;
-
-	private Boolean acceptedTerms;
-
-	private Boolean userType;
 }
