@@ -5,8 +5,8 @@ create table Visitor(
 	name VARCHAR(255),
 	password VARCHAR(255),
 	phoneNumber VARCHAR(255),
-	acceptedComercial BOOL DEFAULT '0'
-	aceptedTerms BOOL NULL DEFAULT '0'
-	userType BOOL DEFAULT '0'
+	acceptedCommercial BOOL DEFAULT '0',
+	acceptedTerms BOOL NULL DEFAULT '0',
+	userType BOOL DEFAULT '0',
 	CONSTRAINT PK_Visitor PRIMARY KEY(ID)
 );
