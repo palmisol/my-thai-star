@@ -64,4 +64,12 @@ public class UcFindAccessCodeImpl extends AbstractAccessCodeUc implements UcFind
 
 		return new PageImpl<>(ctos, pagResultTo, accesscodes.getTotalElements());
 	}
+
+	@Override
+	public Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo criteria) {
+		
+		Page<AccessCodeEntity> accessCodes = getAccessCodeRepository().findByCriteria(criteria);
+		
+		return mapPaginatedEntityList(accessCodes, AccessCodeEto.class);
+	}
 }

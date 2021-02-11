@@ -3,6 +3,7 @@ package com.devonfw.application.jtqj.general.service.impl.config;
 import javax.inject.Inject;
 import javax.servlet.Filter;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,12 +14,17 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 
 import com.devonfw.module.security.common.api.config.WebSecurityConfigurer;
 import com.devonfw.module.security.common.impl.rest.AuthenticationSuccessHandlerSendingOkHttpStatusCode;
 import com.devonfw.module.security.common.impl.rest.JsonUsernamePasswordAuthenticationFilter;
 import com.devonfw.module.security.common.impl.rest.LogoutSuccessHandlerReturningOkHttpStatusCode;
+
 
 /**
  * This type serves as a base class for extensions of the {@code WebSecurityConfigurerAdapter} and provides a default
@@ -28,45 +34,50 @@ import com.devonfw.module.security.common.impl.rest.LogoutSuccessHandlerReturnin
  */
 public abstract class BaseWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Inject
-  private UserDetailsService userDetailsService;
+//  @Inject
+//  private UserDetailsService userDetailsService;
 
   @Inject
   private PasswordEncoder passwordEncoder;
 
-  @Inject
-  private WebSecurityConfigurer webSecurityConfigurer;
+//  @Inject
+//  private WebSecurityConfigurer webSecurityConfigurer;
 
+  @Value("${security.cors.enabled}")
+  boolean corsEnabled = false;
+  
+  private CorsFilter getCorsFilter() {
 
+	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    CorsConfiguration config = new CorsConfiguration();
+	    config.setAllowCredentials(true);
+	    config.addAllowedOrigin("*");
+	    config.addAllowedHeader("*");
+	    config.addAllowedMethod("OPTIONS");
+	    config.addAllowedMethod("HEAD");
+	    config.addAllowedMethod("GET");
+	    config.addAllowedMethod("PUT");
+	    config.addAllowedMethod("POST");
+	    config.addAllowedMethod("DELETE");
+	    config.addAllowedMethod("PATCH");
+	    source.registerCorsConfiguration("/**", config);
+	    return new CorsFilter(source);
+	  }
 
   /**
    * Configure spring security to enable a simple webform-login + a simple rest login.
    */
   @Override
   public void configure(HttpSecurity http) throws Exception {
+	  
+//	  String[] unsecuredResources = new String[] { "/login", "/security/**", "/services/rest/login",
+//	    "/services/rest/logout" };
 
-    String[] unsecuredResources = new String[] { "/login", "/security/**", "/services/rest/login",
-    "/services/rest/logout" };
-
-    // disable CSRF protection by default, use csrf starter to override.
-    http = http.csrf().disable();
-    // load starters as pluggins.
-    http = this.webSecurityConfigurer.configure(http);
-
-    http
-        //
-        .userDetailsService(this.userDetailsService)
-        // define all urls that are not to be secured
-        .authorizeRequests().antMatchers(unsecuredResources).permitAll().anyRequest().authenticated().and()
-        // configure parameters for simple form login (and logout)
-        .formLogin().successHandler(new SimpleUrlAuthenticationSuccessHandler()).defaultSuccessUrl("/")
-        .failureUrl("/login.html?error").loginProcessingUrl("/j_spring_security_login").usernameParameter("username")
-        .passwordParameter("password").and()
-        // logout via POST is possible
-        .logout().logoutSuccessUrl("/login.html").and()
-        // register login and logout filter that handles rest logins
-        .addFilterAfter(getSimpleRestAuthenticationFilter(), BasicAuthenticationFilter.class)
-        .addFilterAfter(getSimpleRestLogoutFilter(), LogoutFilter.class);
+	  http.authorizeRequests().anyRequest().permitAll().and().csrf().disable();
+	 
+	  if (this.corsEnabled) {
+	    http.addFilterBefore(getCorsFilter(), CsrfFilter.class);
+	  }
   }
 
   /**

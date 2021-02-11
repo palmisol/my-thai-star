@@ -46,4 +46,33 @@ public class UcManageQueueImpl extends AbstractQueueUc implements UcManageQueue 
 		LOG.debug("Queue with id '{}' has been created.", resultEntity.getId());
 		return getBeanMapper().map(resultEntity, QueueEto.class);
 	}
+
+	@Override
+	public void decreaseQueueCustomer(long queueId) {
+	    // the queue is found by using the repository find method and queueId parameter
+	    QueueEntity queueEntity = getQueueRepository().find(queueId);
+
+	    // the customers gets reduced by one
+	    queueEntity.setCustomers(queueEntity.getCustomers() - 1);
+
+	    // Based on Hibernate, the command save(Entity) is not strictly required, but it improves readability.
+	    // the queueEntity gets saved
+	    getQueueRepository().save(queueEntity);
+		
+		
+	}
+
+	@Override
+	public void increaseQueueCustomer(long queueId) {
+		 // the queue is found by using the repository find method and queueId paremeter
+	    QueueEntity queueEntity = getQueueRepository().find(queueId);
+
+	    // the customers gets increased by one
+	    queueEntity.setCustomers(queueEntity.getCustomers() + 1);
+
+	    // Based on Hibernate, the command save(Entity) is not strictly required, but it improves readability.
+	    // the queueEntity gets saved
+	    getQueueRepository().save(queueEntity);
+		
+	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeCto;
+import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeSearchCriteriaTo;
 
 public interface UcFindAccessCode {
@@ -25,5 +26,13 @@ public interface UcFindAccessCode {
 	 * @return the {@link List} of matching {@link AccessCodeCto}s.
 	 */
 	Page<AccessCodeCto> findAccessCodeCtos(AccessCodeSearchCriteriaTo criteria);
+	
+	/**
+	 * Returns a paginated list of AccessCodeEto matching the search criteria
+	 * 
+	 * @param criteria the {@link AccessCodeSearchCriteriaTo}.
+	 * @return the {@link List} of matching {@link AccessCodeEto}s.
+	 */
+	Page<AccessCodeEto> findAccessCodeEtos(AccessCodeSearchCriteriaTo criteria);
 
 }
