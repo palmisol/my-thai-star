@@ -1,4 +1,4 @@
-package com.devonfw.application.jtqj.accesscodemanagement.logic.api.usecase;
+package com.devonfw.application.jtqj.accesscodemanagement.logic.impl.usecase;
 
 import java.sql.Timestamp;
 import java.time.Instant;
@@ -12,24 +12,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
 import com.devonfw.application.jtqj.accesscodemanagement.dataaccess.api.AccessCodeEntity;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.Accesscodemanagement;
-import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeCto;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeEto;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.to.AccessCodeSearchCriteriaTo;
-import com.devonfw.application.jtqj.accesscodemanagement.logic.api.usecase.UcFindAccessCode;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.api.usecase.UcManageAccessCode;
 import com.devonfw.application.jtqj.accesscodemanagement.logic.base.usecase.AbstractAccessCodeUc;
-import com.devonfw.application.jtqj.queuemanagement.dataaccess.api.QueueEntity;
 import com.devonfw.application.jtqj.queuemanagement.logic.api.Queuemanagement;
-import com.devonfw.application.jtqj.queuemanagement.logic.api.to.QueueEto;
 import com.devonfw.application.jtqj.queuemanagement.logic.impl.usecase.UcManageQueueImpl;
 
+@Named
+@Validated
+@Transactional
 public class UcManageAccessCodeImpl extends AbstractAccessCodeUc implements UcManageAccessCode {
 
-	 @Inject
+	  @Inject
 	  private Queuemanagement queuemanagement;
 
 	  @Inject
@@ -145,4 +145,4 @@ public class UcManageAccessCodeImpl extends AbstractAccessCodeUc implements UcMa
 	    return this.accesscodemanagement;
 	  }
 
-}
+	}
