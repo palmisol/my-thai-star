@@ -1,10 +1,9 @@
 package com.devonfw.application.jtqj.visitormanagement.logic.impl;
 
-import static org.junit.Assert.*;
 
 import javax.inject.Inject;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,8 +16,8 @@ import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearch
 import com.devonfw.module.test.common.base.ComponentTest;
 
 @SpringBootTest(classes = SpringBootApp.class)
-public class VisitormanagementTest extends ComponentTest {
-
+class Prueba extends ComponentTest {
+	
 	private VisitorEto visitorEto = new VisitorEto();
 
 	@Inject
