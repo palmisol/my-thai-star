@@ -1,5 +1,7 @@
 package com.devonfw.application.jtqj.visitormanagement.logic.api.to;
 
+import javax.inject.Named;
+
 import com.devonfw.application.jtqj.visitormanagement.common.api.Visitor;
 import com.devonfw.module.basic.common.api.to.AbstractEto;
 
