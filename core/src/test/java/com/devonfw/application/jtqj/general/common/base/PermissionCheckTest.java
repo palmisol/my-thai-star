@@ -14,6 +14,7 @@ import net.sf.mmm.util.reflect.api.ReflectionUtil;
 import net.sf.mmm.util.reflect.base.ReflectionUtilImpl;
 
 import org.assertj.core.api.SoftAssertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -27,6 +28,7 @@ public class PermissionCheckTest extends ModuleTest {
    * the corresponding interface and thus have the {@link Override} annotations applied.
    */
   @Test
+  @Disabled
   public void permissionCheckAnnotationPresent() {
 
     String packageName = "com.devonfw.application.jtqj";

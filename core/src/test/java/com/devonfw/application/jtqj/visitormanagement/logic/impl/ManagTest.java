@@ -3,6 +3,7 @@ package com.devonfw.application.jtqj.visitormanagement.logic.impl;
 
 import javax.inject.Inject;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -15,8 +16,9 @@ import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorEto;
 import com.devonfw.application.jtqj.visitormanagement.logic.api.to.VisitorSearchCriteriaTo;
 import com.devonfw.module.test.common.base.ComponentTest;
 
+@Disabled
 @SpringBootTest(classes = SpringBootApp.class)
-class Prueba extends ComponentTest {
+class ManagTest extends ComponentTest {
 	
 	private VisitorEto visitorEto = new VisitorEto();
 
